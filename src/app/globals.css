@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Design vorsorgemitetfs.de: kühles Weiß, Petrol-Grün, runde Karten, eine serifenlose Schrift (DM Sans).
+   Bewusst anders als justavd.de (Papier, Orange, Serifen, Linien statt Karten). */
+@theme {
+  --font-sans: var(--font-dm), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  --color-grund: #f5f8f7;     /* Seitenhintergrund */
+  --color-mint: #e3f3ec;      /* helle Flächen, Markierungen */
+  --color-linie: #d9e3e0;     /* Rahmen */
+  --color-tinte: #0e2a2b;     /* Überschriften */
+  --color-text: #33494a;      /* Fließtext (9,6:1 auf Weiß) */
+  --color-leise: #587071;     /* Nebentext (5,3:1) */
+  --color-petrol: #0b6b57;    /* Knöpfe, Regler, AVD im Diagramm (weiße Schrift 6,4:1) */
+  --color-petrol-dunkel: #07503f; /* Links, Hover */
+  --color-schiefer: #8fa6a8;  /* freies Depot im Diagramm */
+  --color-sonne: #f2c14e;     /* nur Schmuck */
+
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-grund);
+  color: var(--color-text);
+}
+
+/* In @layer base, damit Tailwind-Klassen wie text-white die Überschriftenfarbe überschreiben können */
+@layer base {
+  h1, h2, h3 {
+    color: var(--color-tinte);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+}
+table, .zahl { font-variant-numeric: tabular-nums; }
+
+::selection { background: var(--color-mint); color: var(--color-tinte); }
+
+:focus-visible {
+  outline: 2px solid var(--color-petrol);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+input[type="range"] { accent-color: var(--color-petrol); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
